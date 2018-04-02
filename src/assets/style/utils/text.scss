@@ -6,6 +6,7 @@
   display: block;
   color: #ff3333;
   font-weight: 700;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .h1{
@@ -16,9 +17,9 @@
 
 .h3{
   position: relative;
-  margin: 20px 0;
+  margin: 30px;
   padding-left: 25px;
-  font-size: 32px;
+  font-size: 28px;
   &:before {
     content: "";
     display: block;
@@ -40,7 +41,21 @@
 }
 
 p{
-  font-size: 24px;
+  font-size: 20px;
   margin: 15px 0;
 }
 
+@include phone {
+  .h3{
+    margin: 15px 0 15px 0;
+    padding-left: 0px;
+    font-size: 28px;
+    text-align: center;
+    &:before{
+      display: none;
+    }
+  }
+  p{
+    font-size: 16px;
+  }
+}

@@ -1,9 +1,9 @@
-import Me from '@/components/Pages/Me'
-import Formations from '@/components/Pages/Formations'
-import Experiences from '@/components/Pages/Experiences'
-import Skills from '@/components/Pages/Skills'
-import Projects from '@/components/Pages/Projects'
-import Contact from '@/components/Pages/Contact'
+import Me from '@/components/pages/Me'
+import Formations from '@/components/pages/Formations'
+import Experiences from '@/components/pages/Experiences'
+import Skills from '@/components/pages/Skills'
+import Projects from '@/components/pages/Projects'
+import Contact from '@/components/pages/Contact'
 
 export const Menu = [
   {

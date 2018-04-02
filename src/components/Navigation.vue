@@ -4,8 +4,7 @@
       <li class="navigation_item" v-for="item in items">
         <router-link
           class="navigation_item_link"
-          :to="{ path: item.route.path }"
-          @click="disable">
+          :to="{ path: item.route.path }">
           <span class="navigation_item_label">{{ item.label }}</span>
           <span class="navigation_item_icon" v-html="item.icon"></span>
         </router-link>
@@ -19,11 +18,6 @@
 
   export default {
     name: 'Navigation',
-    methods: {
-      disable: function () {
-
-      }
-    },
     data: () => ({
       items: Menu
     })
@@ -65,5 +59,18 @@
   }
   .router-link-exact-active{
     border-left: solid 5px #fff;
+  }
+
+  @include phone {
+    $iconNavigationWidth: 55px;
+    $linkNavigationWidth: 230px;
+    .navigation_item{
+      &_label{
+        width: calc(100% - #{$iconNavigationWidth});
+      }
+      &_icon{
+        width: $iconNavigationWidth;
+      }
+    }
   }
 </style>

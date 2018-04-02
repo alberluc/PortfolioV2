@@ -100,4 +100,16 @@
       width: 30px;
     }
   }
+  @include phone {
+    .letters{
+      font-size:10vw;
+      margin: 5px 0;
+    }
+    .letter{
+      &-space{
+        display: block;
+        width: 10px;
+      }
+    }
+  }
 </style>
