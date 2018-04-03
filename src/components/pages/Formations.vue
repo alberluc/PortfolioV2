@@ -125,10 +125,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    margin: 15px 0 25px 0;
+    /*position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%);*/
   }
 
   .formations_bubbles_item{

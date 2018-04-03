@@ -51,7 +51,6 @@
         return Math.round(Math.random() * (Object.keys(AnimationsLetters).length - 1));
       },
       randomAnimation: function () {
-        console.log(this.isStopped)
         if (!this.isStopped)
           this.startAnimation(this.getRandomIndexLetter());
       },

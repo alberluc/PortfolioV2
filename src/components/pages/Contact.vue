@@ -37,8 +37,8 @@
     &_submit{
       cursor: pointer;
       display: block;
-      width: 200px;
-      padding: 8px;
+      width: 120px;
+      padding: 10px 8px;
       margin-top: 20px;
       border: none;
       border-radius: 3px;
@@ -57,7 +57,7 @@
       margin: 10px 0;
       &:first-child{
         & input{
-          width: calc(50% - 5px);
+          width: calc(50% - 8px);
         }
       }
     }
