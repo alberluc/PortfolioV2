@@ -1,7 +1,7 @@
 <template>
-  <div id="page-experiences">
+  <section id="page-experiences">
     <span class="h3">Mes expériences</span>
-  </div>
+  </section>
 </template>
 
 <script>

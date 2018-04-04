@@ -1,5 +1,5 @@
 <template>
-  <div id="page-skills" class="skills">
+  <section id="page-skills" class="skills">
     <div class="skills-top">
       <span class="h3">Mes compétences</span>
       <form class="skill_sort">
@@ -23,7 +23,7 @@
         </div>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -39,6 +39,10 @@
     },
     methods: {
       pushLevels: function () {
+        this.skills.forEach((skill, index) => {
+          let el = this.$el.querySelector(`[data-skill-id='${index}'] .skills_item_bar_level`);
+          el.style.width = '0%';
+        });
         let delay = 0;
         this.skills.forEach((skill, index) => {
           setTimeout(() => {
@@ -48,11 +52,18 @@
           delay += 100;
         })
       },
-      sort: function (value) {
+      sort: function () {
         switch (this.sortValue) {
-          case "level": this.skills.sort(function(a,b) {return (a.value > b.value) ? 1 : ((b.value > a.value) ? -1 : 0);} );
-          case "name": this.skills.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
+          case "level": {
+              this.skills.sort((a,b) => (a.value < b.value) ? 1 : ((b.value < a.value) ? -1 : 0));
+              break;
+          }
+          case "name": {
+              this.skills.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+              break;
+          }
         }
+        this.pushLevels();
       }
     },
     mounted () {

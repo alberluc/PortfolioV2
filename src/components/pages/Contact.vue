@@ -1,5 +1,5 @@
 <template>
-  <div id="page-contact" class="contact">
+  <section id="page-contact" class="contact">
     <span class="h3">Me contacter</span>
     <form class="contact_form">
       <div class="contact_form_line">
@@ -16,7 +16,7 @@
         <input type="submit" value="Envoyer" class="contact_form_submit">
       </div>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>

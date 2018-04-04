@@ -1,5 +1,5 @@
 <template>
-  <div id="page-formations" class="formations">
+  <section id="page-formations" class="formations">
     <span class="h3">Mes formations</span>
     <div class="formations_bubbles">
       <span
@@ -27,7 +27,7 @@
         <p class="formations_item_description">{{ formation.description }}</p>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
