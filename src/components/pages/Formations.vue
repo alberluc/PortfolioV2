@@ -9,24 +9,28 @@
         <img class="formations_bubbles_item_image" :src="'./static/img/' + formation.image_name"/>
       </span>
     </div>
-    <ul class="formations_list">
-      <li v-for="(formation, index) in formations" v-if="formation.active" class="formations_item">
-        <span class="formations_item_name">{{ formation.name }}</span>
-        <span class="formations_item_school">{{ formation.school }} à {{ formation.city }}</span>
-        <div class="formations_item_dates">
-          <span class="formations_item_dates_from">
-            <span class="formations_item_dates_from_icon"><i class="fas fa-flag"></i></span>
-            <span class="formations_item_dates_from_text">{{ formation.from.year }}</span>
-          </span>
-          <span class="formations_item_dates_separation"> / </span>
-          <span class="formations_item_dates_to">
-            <span class="formations_item_dates_to_icon"><i class="fas fa-flag-checkered"></i></span>
-            <span class="formations_item_dates_to_text">{{ formation.to.year }}</span>
-          </span>
-        </div>
-        <p class="formations_item_description">{{ formation.description }}</p>
+    <transition-group name="navigate" tag="ul" class="formations_list">
+      <li v-for="(formation, index) in formations" v-if="formation.active" v-bind:key="index" class="formations_item">
+        <section>
+          <header class="formations_item_header">
+            <span class="formations_item_name">{{ formation.name }}</span>
+            <span class="formations_item_school">{{ formation.school }} à {{ formation.city }}</span>
+            <div class="formations_item_dates">
+              <span class="formations_item_dates_from">
+                <span class="formations_item_dates_from_icon"><i class="fas fa-flag"></i></span>
+                <span class="formations_item_dates_from_text">{{ formation.from.year }}</span>
+              </span>
+              <span class="formations_item_dates_separation"> / </span>
+              <span class="formations_item_dates_to">
+                <span class="formations_item_dates_to_icon"><i class="fas fa-flag-checkered"></i></span>
+                <span class="formations_item_dates_to_text">{{ formation.to.year }}</span>
+              </span>
+            </div>
+          </header>
+          <main class="formations_item_main formations_item_description">{{ formation.description }}</main>
+        </section>
       </li>
-    </ul>
+    </transition-group>
   </section>
 </template>
 
@@ -53,6 +57,48 @@
 <style lang="scss">
   $imageSize: 65px;
 
+  .navigate-enter-active, .navigate-leave-active{
+    transition: transform 1s;
+    .formations_item{
+      &_header{
+        transition: transform 1s, opacity 1s;
+      }
+      &_main{
+        transition: transform 1s, opacity 1s;
+      }
+    }
+  }
+
+  .navigate-leave-to{
+    .formations_item{
+      &_header{
+        transform: translateX(calc(100% + 80px));
+        transform: translate3d(calc(100% + 80px), 0, 0);
+        opacity: 0;
+      }
+      &_main{
+        transform: translateX(calc(-100% - 80px));
+        transform: translate3d(calc(-100% - 80px), 0, 0);
+        opacity: 0;
+      }
+    }
+  }
+
+  .navigate-enter{
+    .formations_item{
+      &_header{
+        transform: translateX(calc(-100% - 80px));
+        transform: translate3d(calc(-100% - 80px), 0, 0);
+        opacity: 0;
+      }
+      &_main{
+        transform: translateX(calc(100% + 80px));
+        transform: translate3d(calc(100% + 80px), 0, 0);
+        opacity: 0;
+      }
+    }
+  }
+
   .formations {
     position: relative;
     width: 100%;
@@ -60,14 +106,27 @@
   }
 
   .formations_list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 20px;
   }
 
   .formations_item{
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    max-width: 800px;
+    top: 50%;
+    transform: translateY(-50%);
+    &_header{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
     &_name{
       display: block;
       color: $primaryColor;
@@ -98,7 +157,7 @@
       }
     }
     &_dates{
-      margin-top: 20px;
+      margin: 10px 0 20px 0;
       &_from{
         &_icon{
 

@@ -29,3 +29,7 @@ li{
 p{
 
 }
+
+:focus {
+  outline: $secondColor auto 5px;
+}

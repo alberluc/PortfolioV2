@@ -3,8 +3,8 @@
     <div class="skills-top">
       <span class="h3">Mes compétences</span>
       <form class="skill_sort">
-        <span>Trier par :</span>
-        <select @change="sort" v-model="sortValue">
+        <span class="skill_sort_label">Trier par :</span>
+        <select @change="sort" v-model="sortValue" class="skill_sort_select">
           <option value="level" selected>Niveau</option>
           <option value="name">Nom</option>
         </select>
@@ -87,7 +87,20 @@
   }
 
   .skill_sort{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 30px;
+    &_label{
+      margin-right: 10px;
+    }
+    &_select{
+      padding: 5px;
+      color: $secondColor;
+      font-weight: 700;
+      border: none;
+      border-radius: 3px;
+    }
   }
 
   .skills_item{
@@ -108,6 +121,7 @@
       margin-right: 5px;
     }
     &_name{
+      font-weight: 700;
       color: $primaryColor;
     }
     &_bar{
@@ -137,4 +151,34 @@
       }
     }
   }
+
+  @include tablet_high {
+    .skills_list{
+      grid-template-columns:repeat(auto-fill, 234px);
+    }
+  }
+
+  @include phone {
+    .skills{
+      position: relative;
+      &-top{
+        display: block;
+      }
+    }
+    .skills_list{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .skills_item{
+      width: 100%;
+    }
+    .skill_sort{
+      &_label{
+        white-space: pre;
+      }
+    }
+  }
+
 </style>
