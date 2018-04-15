@@ -7,20 +7,27 @@
       <li class="projects_item" v-for="(project, index) in projects" v-bind:key="index" v-if="project.active">
         <div class="control_arrow control_arrow-left" @click="show(currentIndex - 1)"></div>
         <section class="projects_item_section">
-          <header class="projects_item_header">
-            <h2 class="projects_item_name">{{ project.name }}</h2>
-            <span class="projects_item_at">{{ project.at }}</span>
-            <span class="projects_item_date">{{ project.date }}</span>
-            <div class="projects_item_image_container">
+          <main class="projects_item_main">
+            <div class="projects_item_main_section projects_item_main-left">
               <img class="projects_item_image" :src="'./static/img/projects/' + project.image_name"/>
             </div>
-          </header>
-          <div class="projects_item_links">
-            <a class="projects_item_links_item" target="_blank" v-if="project.code" :href="project.code.link"><span v-html="project.code.icon"></span> Voir le code sur {{ project.code.name }}</a>
-            <a class="projects_item_links_item" target="_blank" v-if="project.link" :href="project.link"><i class="fas fa-link"></i> Voir le projet</a>
-          </div>
-          <main class="projects_item_main">
-            <p class="projects_item_description">{{ project.description }}</p>
+            <div class="projects_item_main_section projects_item_main-right">
+              <div class="projects_item_main_head">
+                <h1 class="projects_item_name">{{ project.name }}</h1>
+                <h4 class="projects_item_at">{{ project.at }}</h4>
+                <span class="projects_item_date">{{ project.date }}</span>
+              </div>
+              <p class="projects_item_description">{{ project.description }}</p>
+              <ul class="projects_tag_list projects_item_technos">
+                <li class="projects_tag_item projects_item_technos_item" v-for="technos in project.technos">
+                  <span class="projects_item_technos_item_label">{{ technos }}</span>
+                </li>
+              </ul>
+              <div class="projects_item_links">
+                <a class="projects_item_links_item" target="_blank" v-if="project.code" :href="project.code.link"><span v-html="project.code.icon"></span> Voir le code sur {{ project.code.name }}</a>
+                <a class="projects_item_links_item" target="_blank" v-if="project.link" :href="project.link"><i class="fas fa-link"></i> Voir le projet</a>
+              </div>
+            </div>
           </main>
         </section>
         <ul class="control_dot_list">
@@ -74,6 +81,8 @@
 
 <style lang="scss">
 
+  $size_header: 75px;
+
   .left-enter-active, .left-leave-active,
   .right-enter-active, .right-leave-active{
     transition: transform 1s;
@@ -110,6 +119,13 @@
     background-color: #f3f3f3;
     border: 10px solid #ff3333;
     border-image: repeating-linear-gradient(45deg, #ff3333, #ff3333 4%, $primaryColor 1%, $primaryColor 8%) 10;
+    &_header{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: $size_header;
+    }
     &_section{
       position: absolute;
       top: 50%;
@@ -121,45 +137,71 @@
       overflow-x: hidden;
       transform: translateY(-50%);
     }
-    &_name{
-      text-align: center;
+    &_main{
+      display: flex;
+      justify-content: space-around;
+      padding-top: 30px;
+      padding-bottom: 50px;
+      height: 100%;
+      &_section{
+        position: relative;
+        width: calc(50% - 40px);
+      }
+      &-left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 3px;
+      }
+      &-right{
+      }
+      &_head{
+        position: relative;
+        margin-bottom: 60px;
+        &:after{
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -30px;
+          height: 5px;
+          width: 150px;
+          background-color: $primaryColor;
+          border-radius: 5px;
+        }
+      }
     }
     &_description{
       text-align: justify;
     }
     &_image{
       display: block;
-      max-width: 350px;
-      max-height: 190px;
-      margin: 25px 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: 100%;
+      max-height: 100%;
       border-radius: 3px;
-      &_container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 200px;
-      }
+      transform: translate(-50%, -50%);
     }
     &_at{
       display: block;
       font-style: italic;
       font-weight: 700;
       color: $secondColor;
-      text-align: center;
     }
     &_date{
       display: block;
-      text-align: center;
+      font-size: 20px;
+      line-height: 20px;
     }
     &_links{
-      position: absolute;
-      top: 0;
       display: flex;
       flex-direction: column;
+      margin-top: 20px;
       &_item{
         display: block;
-        font-style: italic;
-        font-size: 16px;
+        font-size: 20px;
         transition: color 300ms;
         &:hover{
           color: $secondColor;
@@ -172,13 +214,38 @@
     }
   }
 
+  .projects_tag{
+    &_list {
+      position: relative;
+      display: flex;
+      margin: 5px 0;
+      padding-top: 5px;
+      &:first-child:before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        width: 30px;
+        border: dashed 0.5px #353535;
+        background-color: transparent;
+      }
+    }
+    &_item{
+      padding: 3px;
+      margin: 0 3px;
+      border-radius: 3px;
+      background-color: $primaryColor;
+      color: white;
+      font-size: 20px;
+    }
+  }
+
   .control_arrow{
     cursor: pointer;
     position: absolute;
     z-index: 20;
     top: 50%;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border: solid $secondColor 3px;
     border-radius: 50%;
     transition: border 300ms, background-color 300ms;
@@ -234,7 +301,7 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      bottom: 40px;
+      bottom: 15px;
       left: 50%;
       transform: translateX(-50%);
     }

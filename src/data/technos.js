@@ -9,6 +9,7 @@ export const Technos = {
   Socketio: "Socket.io",
   PHP: "PHP",
   SQL: "SQL",
+  MongoDB: "MongoDB",
   Android: "Android",
   Swift: "Swift",
   Photoshop: "Photoshop",

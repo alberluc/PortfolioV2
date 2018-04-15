@@ -83,7 +83,7 @@
     color: #fff;
     text-transform: uppercase;
     font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 5.5em;
+    font-size: 95px;
     font-weight: 700;
   }
   .letter{

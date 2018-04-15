@@ -24,7 +24,7 @@
               </div>
             </div>
           </header>
-          <main>
+          <main class="experience_item_main">
             <div>
               <span class="experience_item_name">{{ experience.name }}</span>
               <span> en </span>
@@ -72,6 +72,9 @@
       display: flex;
       justify-content: space-between;
     }
+    &_main{
+      font-size: 22px;
+    }
     &_company{
       display: block;
       position: relative;
@@ -112,9 +115,6 @@
       font-style: italic;
       color: $secondColor;
     }
-    &_description{
-
-    }
   }
 
   .experience_tag{
@@ -138,7 +138,7 @@
       border-radius: 3px;
       background-color: $primaryColor;
       color: white;
-      font-size: 12px;
+      font-size: 20px;
     }
   }
 

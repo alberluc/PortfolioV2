@@ -13,7 +13,7 @@
       <li v-for="(formation, index) in formations" v-if="formation.active" v-bind:key="index" class="formations_item">
         <section>
           <header class="formations_item_header">
-            <span class="formations_item_name">{{ formation.name }}</span>
+            <h2 class="formations_item_name">{{ formation.name }}</h2>
             <span class="formations_item_school">{{ formation.school }} à {{ formation.city }}</span>
             <div class="formations_item_dates">
               <span class="formations_item_dates_from">
@@ -27,7 +27,9 @@
               </span>
             </div>
           </header>
-          <main class="formations_item_main formations_item_description">{{ formation.description }}</main>
+          <main class="formations_item_main">
+            <p class="formations_item_description">{{ formation.description }}</p>
+          </main>
         </section>
       </li>
     </transition-group>
@@ -55,7 +57,7 @@
 </script>
 
 <style lang="scss">
-  $imageSize: 65px;
+  $imageSize: 80px;
 
   .navigate-enter-active, .navigate-leave-active{
     transition: transform 1s;
@@ -109,7 +111,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
   }
 
   .formations_item{
@@ -118,7 +119,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    max-width: 800px;
+    max-width: 1080px;
+    margin-top: 30px;
     top: 50%;
     transform: translateY(-50%);
     &_header{
@@ -130,13 +132,13 @@
     &_name{
       display: block;
       color: $primaryColor;
-      font-size: 22px;
       font-weight: 700;
       text-align: center;
     }
     &_school{
       display: block;
       color: $secondColor;
+      font-size: 26px;
       font-weight: 700;
       font-style: italic;
       text-align: center;
@@ -158,22 +160,7 @@
     }
     &_dates{
       margin: 10px 0 20px 0;
-      &_from{
-        &_icon{
-
-        }
-        &_text{
-
-        }
-      }
-      &_to{
-        &_icon{
-
-        }
-        &_text{
-
-        }
-      }
+      font-size: 24px;
     }
     &_description{
       text-align: justify;
@@ -184,11 +171,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px 0 25px 0;
-    /*position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);*/
   }
 
   .formations_bubbles_item{
